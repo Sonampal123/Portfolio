@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sonam Pal - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    /* NAV */
+    nav {
+      background: #fff;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo { font-size: 1.3rem; font-weight: 700; color: #2563eb; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: #555; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #2563eb; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .hero-avatar {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 3rem;
+      border: 3px solid rgba(255,255,255,0.4);
+    }
+    .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+    .hero p { font-size: 1rem; opacity: 0.88; margin-bottom: 6px; }
+    .hero .location { font-size: 0.85rem; opacity: 0.75; margin-bottom: 28px; }
+    .hero-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+    .btn-white {
+      background: white; color: #2563eb;
+      padding: 10px 24px; border-radius: 6px;
+      text-decoration: none; font-weight: 600; font-size: 0.88rem;
+      transition: transform 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); }
+    .btn-border {
+      border: 2px solid white; color: white;
+      padding: 10px 24px; border-radius: 6px;
+      text-decoration: none; font-weight: 500; font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .btn-border:hover { background: rgba(255,255,255,0.15); }
+
+    /* SECTION */
+    section { padding: 60px 40px; max-width: 960px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.4rem; font-weight: 700; color: #1e293b;
+      margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 2px; background: #e2e8f0;
+    }
+    .section-sub { color: #64748b; font-size: 0.88rem; margin-bottom: 30px; }
+
+    /* ABOUT */
+    .about-box {
+      background: white; border-radius: 12px; padding: 28px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .about-box p { color: #475569; line-height: 1.8; margin-bottom: 20px; }
+    .about-info { display: flex; flex-wrap: wrap; gap: 20px; }
+    .info-item { font-size: 0.85rem; color: #64748b; }
+    .info-item span { color: #1e293b; font-weight: 500; }
+
+    /* SKILLS */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag {
+      background: #eff6ff; color: #2563eb;
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.82rem; font-weight: 500;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* EXPERIENCE */
+    .exp-card {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      margin-bottom: 16px;
+      border-left: 4px solid #2563eb;
+    }
+    .exp-header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+    .exp-company { font-weight: 700; color: #1e293b; font-size: 1rem; }
+    .exp-period { font-size: 0.8rem; color: #94a3b8; background: #f1f5f9; padding: 3px 10px; border-radius: 20px; }
+    .exp-role { font-size: 0.85rem; color: #2563eb; font-weight: 600; margin-bottom: 4px; }
+    .exp-location { font-size: 0.78rem; color: #94a3b8; margin-bottom: 10px; }
+    .exp-project { font-size: 0.85rem; font-weight: 600; color: #334155; margin-bottom: 6px; }
+    .exp-desc { font-size: 0.85rem; color: #64748b; line-height: 1.7; margin-bottom: 12px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .mini-tag {
+      background: #f0fdf4; color: #16a34a;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 500;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .project-card {
+      background: white; border-radius: 12px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      overflow: hidden; transition: transform 0.2s;
+    }
+    .project-card:hover { transform: translateY(-4px); }
+    .project-top {
+      height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem;
+    }
+    .project-body { padding: 18px; }
+    .project-type { font-size: 0.73rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .project-title { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+    .project-desc { font-size: 0.82rem; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
+
+    /* EDUCATION */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+    .edu-card {
+      background: white; border-radius: 12px; padding: 22px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .edu-icon { font-size: 2rem; margin-bottom: 10px; }
+    .edu-degree { font-size: 0.9rem; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
+    .edu-school { font-size: 0.8rem; color: #64748b; margin-bottom: 8px; }
+    .edu-score {
+      display: inline-block;
+      background: #eff6ff; color: #2563eb;
+      padding: 3px 12px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600;
+    }
+
+    /* CERTIFICATIONS */
+    .cert-list { display: flex; flex-direction: column; gap: 12px; }
+    .cert-item {
+      background: white; border-radius: 10px; padding: 16px 20px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .cert-badge { font-size: 1.6rem; }
+    .cert-name { font-weight: 600; font-size: 0.9rem; color: #1e293b; }
+    .cert-org { font-size: 0.8rem; color: #94a3b8; }
+
+    /* RESUME */
+    .resume-box {
+      background: white; border-radius: 12px; padding: 36px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      text-align: center; max-width: 500px; margin: 0 auto;
+    }
+    .resume-box .r-icon { font-size: 3rem; margin-bottom: 12px; }
+    .resume-box h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: #1e293b; }
+    .resume-box p { color: #64748b; font-size: 0.88rem; margin-bottom: 22px; }
+    .resume-btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .dl-btn {
+      background: #2563eb; color: white;
+      padding: 10px 24px; border-radius: 6px;
+      text-decoration: none; font-weight: 600; font-size: 0.88rem;
+      display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+    .dl-btn:hover { background: #1d4ed8; }
+    .view-btn {
+      border: 2px solid #e2e8f0; color: #475569;
+      padding: 10px 24px; border-radius: 6px;
+      text-decoration: none; font-weight: 500; font-size: 0.88rem;
+      display: flex; align-items: center; gap: 8px;
+      transition: border-color 0.2s;
+    }
+    .view-btn:hover { border-color: #2563eb; color: #2563eb; }
+
+    /* CONTACT */
+    .contact-cards { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contact-card {
+      background: white; border-radius: 10px; padding: 16px 22px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.2s, transform 0.2s;
+      border: 1px solid #e2e8f0;
+      min-width: 220px;
+    }
+    .contact-card:hover { border-color: #2563eb; transform: translateY(-2px); }
+    .contact-icon { font-size: 1.4rem; }
+    .c-label { font-size: 0.72rem; color: #94a3b8; display: block; }
+    .c-val { font-size: 0.88rem; font-weight: 600; color: #1e293b; }
+
+    /* FOOTER */
+    footer {
+      background: #1e293b; color: #94a3b8;
+      text-align: center; padding: 24px;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      section { padding: 40px 20px; }
+      .hero { padding: 60px 20px; }
+      .hero h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Sonam Pal</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-avatar">👩‍💻</div>
+  <h1>Sonam Pal</h1>
+  <p>Web Developer · B.Tech IT Student</p>
+  <p class="location">📍 Varanasi, Uttar Pradesh, India</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-white">View Projects</a>
+    <a href="https://www.linkedin.com/in/-sonam-pal" target="_blank" class="btn-border">LinkedIn</a>
+    <a href="#contact" class="btn-border">Contact Me</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">About Me</div>
+  <p class="section-sub">A little bit about who I am</p>
+  <div class="about-box">
+    <p>I'm a final-year B.Tech (Information Technology) student at Rajkiya Engineering College, Ambedkar Nagar (AKTU), graduating in 2026. I have a strong interest in web development and creative design, and I enjoy building user-friendly, efficient, and visually appealing digital experiences.</p>
+    <p>I've completed internships where I built real projects using HTML, CSS, JavaScript, PHP, and MySQL. I'm passionate about problem-solving and always looking to learn new technologies.</p>
+    <div class="about-info">
+      <div class="info-item">📧 Email: <span>vnssonampal@gmail.com</span></div>
+      <div class="info-item">📞 Phone: <span>+91 9305078697</span></div>
+      <div class="info-item">📍 Location: <span>Varanasi, UP, India</span></div>
+      <div class="info-item">🎓 Degree: <span>B.Tech IT (2026)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div style="background:white">
+<section id="skills">
+  <div class="section-title">Skills</div>
+  <p class="section-sub">Technologies and tools I work with</p>
+  <div class="skills-list">
+    <span class="skill-tag">HTML</span>
+    <span class="skill-tag">CSS</span>
+    <span class="skill-tag">JavaScript</span>
+    <span class="skill-tag">PHP</span>
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">C</span>
+    <span class="skill-tag">C++</span>
+    <span class="skill-tag">SQL</span>
+    <span class="skill-tag">Bootstrap</span>
+    <span class="skill-tag">Laravel</span>
+    <span class="skill-tag">jQuery</span>
+    <span class="skill-tag">MySQL</span>
+    <span class="skill-tag">Git</span>
+    <span class="skill-tag">GitHub</span>
+    <span class="skill-tag">VS Code</span>
+    <span class="skill-tag">XAMPP</span>
+    <span class="skill-tag">MS Office</span>
+  </div>
+</section>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-title">Experience</div>
+  <p class="section-sub">Internships I've completed</p>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <span class="exp-company">VK IT Pvt. Ltd</span>
+      <span class="exp-period">June 2025 – Aug 2025</span>
+    </div>
+    <div class="exp-role">Web Development Intern</div>
+    <div class="exp-location">📍 Varanasi, India</div>
+    <div class="exp-project">Project: Boutique Dynamic Website</div>
+    <div class="exp-desc">Developed a dynamic online boutique store with product pages, smooth navigation, modern UI, and database integration. Handled both frontend and backend of the project independently.</div>
+    <div class="tag-row">
+      <span class="mini-tag">HTML</span><span class="mini-tag">CSS</span>
+      <span class="mini-tag">JavaScript</span><span class="mini-tag">Bootstrap</span>
+      <span class="mini-tag">PHP</span><span class="mini-tag">MySQL</span>
+      <span class="mini-tag">jQuery</span>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <span class="exp-company">CodeSoft</span>
+      <span class="exp-period">Aug 2023 – Sep 2023</span>
+    </div>
+    <div class="exp-role">C++ Developer Intern</div>
+    <div class="exp-location">🌐 Remote</div>
+    <div class="exp-project">Project: Student Management System (C++)</div>
+    <div class="exp-desc">Built a console-based Student Management System using Object-Oriented Programming and file handling. Features include add, update, delete, and view student records.</div>
+    <div class="tag-row">
+      <span class="mini-tag">C++</span><span class="mini-tag">OOP</span>
+      <span class="mini-tag">File Handling</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div style="background:white">
+<section id="projects">
+  <div class="section-title">Projects</div>
+  <p class="section-sub">Things I've built on my own</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-top" style="background:#eff6ff">✈️</div>
+      <div class="project-body">
+        <div class="project-type">Full Stack Web App</div>
+        <div class="project-title">Tours & Travel Website</div>
+        <div class="project-desc">A functional tourism platform with destination browsing, package listings, responsive UI, and dynamic data handling.</div>
+        <div class="tag-row">
+          <span class="mini-tag">HTML</span><span class="mini-tag">CSS</span>
+          <span class="mini-tag">PHP</span><span class="mini-tag">MySQL</span>
+          <span class="mini-tag">Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top" style="background:#f0fdf4">🤖</div>
+      <div class="project-body">
+        <div class="project-type">Interactive Web App</div>
+        <div class="project-title">Chatbot Website</div>
+        <div class="project-desc">An interactive chatbot that answers user queries with smooth UI and quick response interactions using Python backend.</div>
+        <div class="tag-row">
+          <span class="mini-tag">HTML</span><span class="mini-tag">CSS</span>
+          <span class="mini-tag">JavaScript</span><span class="mini-tag">Python</span>
+          <span class="mini-tag">Bootstrap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-top" style="background:#fdf4ff">🛍️</div>
+      <div class="project-body">
+        <div class="project-type">E-Commerce · Internship</div>
+        <div class="project-title">Boutique Dynamic Website</div>
+        <div class="project-desc">A full-featured online boutique with product catalog, smooth navigation, and modern UI with complete database integration.</div>
+        <div class="tag-row">
+          <span class="mini-tag">PHP</span><span class="mini-tag">MySQL</span>
+          <span class="mini-tag">Bootstrap</span><span class="mini-tag">jQuery</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-title">Education</div>
+  <p class="section-sub">My academic background</p>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">B.Tech – Information Technology</div>
+      <div class="edu-school">Rajkiya Engineering College, AKTU</div>
+      <span class="edu-score">Class of 2026</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📘</div>
+      <div class="edu-degree">Intermediate (12th)</div>
+      <div class="edu-school">MMIC Varanasi</div>
+      <span class="edu-score">84%</span>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon">📗</div>
+      <div class="edu-degree">High School (10th)</div>
+      <div class="edu-school">MMIC Varanasi</div>
+      <span class="edu-score">86%</span>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div style="background:white">
+<section id="certifications">
+  <div class="section-title">Certifications</div>
+  <p class="section-sub">Courses and achievements</p>
+  <div class="cert-list">
+    <div class="cert-item">
+      <div class="cert-badge">🏆</div>
+      <div>
+        <div class="cert-name">Web Development Certificate</div>
+        <div class="cert-org">VK IT Company</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-badge">📜</div>
+      <div>
+        <div class="cert-name">Web Development Training</div>
+        <div class="cert-org">CodeSoft</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-badge">🏐</div>
+      <div>
+        <div class="cert-name">Volleyball State Player</div>
+        <div class="cert-org">SRM Lucknow</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- RESUME -->
+<section id="resume">
+  <div class="section-title">Resume</div>
+  <p class="section-sub">Download or view my resume</p>
+  <div class="resume-box">
+    <div class="r-icon">📄</div>
+    <h3>Sonam Pal — Resume</h3>
+    <p>My complete resume with skills, experience, education, and projects.</p>
+    <div class="resume-btns">
+      <a href="sonam_resume-1.pdf" download="Sonam_Pal_Resume.pdf" class="dl-btn">
+        ⬇ Download PDF
+      </a>
+      <a href="sonam_resume-1.pdf" target="_blank" class="view-btn">
+        👁 View Online
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div style="background:white">
+<section id="contact">
+  <div class="section-title">Contact</div>
+  <p class="section-sub">Feel free to reach out!</p>
+  <div class="contact-cards">
+    <a href="mailto:vnssonampal@gmail.com" class="contact-card">
+      <span class="contact-icon">📧</span>
+      <div>
+        <span class="c-label">Email</span>
+        <span class="c-val">vnssonampal@gmail.com</span>
+      </div>
+    </a>
+    <a href="tel:+919305078697" class="contact-card">
+      <span class="contact-icon">📞</span>
+      <div>
+        <span class="c-label">Phone</span>
+        <span class="c-val">+91 9305078697</span>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/-sonam-pal" target="_blank" class="contact-card">
+      <span class="contact-icon">💼</span>
+      <div>
+        <span class="c-label">LinkedIn</span>
+        <span class="c-val">Sonam Pal</span>
+      </div>
+    </a>
+    <div class="contact-card">
+      <span class="contact-icon">📍</span>
+      <div>
+        <span class="c-label">Location</span>
+        <span class="c-val">Varanasi, UP, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made by Sonam Pal · B.Tech IT Student · 2025</p>
+</footer>
+
+</body>
+</html
